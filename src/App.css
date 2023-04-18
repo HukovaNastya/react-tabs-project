@@ -6,42 +6,62 @@
   font-size: 13px;
   line-height: 19px;
   /* color: #499e5f; */
-  /* color: #79bab7; */
-  color: #D8A7B1;
+  color: #79bab7;
+  /* color: #87c0cc; */
   margin-top: 100px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.tab {
+  min-height: 40px;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  border: transparent;
+  padding: 30px 60px;
+  border-radius: 40px;
+  /* color: #32a3b1; */
+  color: #2E8BC0;
+  /* color: EF7C8E; */
+  font-size: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: -4px -4px 15px rgba(255, 255, 255, 1),
+      4px 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.tab:hover {
+  color: #79bab7;
+  box-shadow: inset -4px -4px 10px rgba(255, 255, 255, 0.5),
+  inset 4px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* .tab-delete-btn{
+  border: none;
+  background: transparent;
+  display: none;
+  color: #2E8BC0;
+  font-weight: 900;
+}
+
+.tab:hover  ~.tab-delete-btn:hover{
+  display: block !important;
+} */
+
+.tab-info {
+  margin-top: 50px;
+  font-size: 10px;
+  font-weight: 600;
+  color: #2E8BC0;
+}
+
+.tabs-container {
+  margin-top: 200px;
   display: flex;
   flex-direction: column;
+  max-width: 250px;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.main-wrapper{
+  display: flex;
+  justify-content: flex-start;
 }
