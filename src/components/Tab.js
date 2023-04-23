@@ -1,29 +1,16 @@
 import '../App.css';
 
-const Tab = ({tabName, tabDetail}) => {
-  // console.log(tab)
+const Tab = ({tabName, id, currentTab, setCurrentTab}) => {
+  console.log(currentTab, id)
   return (
     <>
       <div className='main-wrapper'>
         <div className='tabs-container'>
-          <div className='tab'>
+          <div className={currentTab === id? "tab-active" : "tab"} onClick={() => setCurrentTab(id)}>
             <h1>{tabName}</h1>
-          </div>
-          <div className='tab-info'>
-            <h1>{tabDetail}</h1>
           </div>
         </div>
      </div>
-     {/* <div className='main-wrapper'>
-        <div className='tabs-container'>
-          <div className='tab'>
-            <h1>{tabsInfo[currentTab.name}</h1>
-          </div>
-          <div className='tab-info'>
-            <h1>{tabsInfo[0].detail}</h1>
-          </div>
-        </div>
-     </div> */}
   </>
   )
 }

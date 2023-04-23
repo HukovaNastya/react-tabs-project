@@ -1,10 +1,17 @@
 import Tab from './Tab';
 import '../App.css';
-const Tabs = ({tabsInfo}) => {
+const Tabs = ({tabsInfo, currentTab, setCurrentTab}) => {
+
   const allTabs = tabsInfo.map(tab => {
     return (
       <div key={tab.id}>
-        <Tab key={tab.id} tabName={tab.name} tabDetail={tab.detail}/>
+        <Tab 
+          id={tab.id} 
+          tabName={tab.name} 
+          tabDetail={tab.detail} 
+          currentTab={currentTab}
+          setCurrentTab={setCurrentTab}
+        />
       </div>
     );
   });
