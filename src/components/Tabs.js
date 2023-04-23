@@ -1,10 +1,15 @@
 import Tab from './Tab';
-const Tabs = ({showTabs, tabsInfo}) => {
-  return (
-    <>
-      <Tab showTabs={showTabs} tabsInfo={tabsInfo} />
-    </>
-  )
+import '../App.css';
+const Tabs = ({tabsInfo}) => {
+  const allTabs = tabsInfo.map(tab => {
+    return (
+      <div key={tab.id}>
+        <Tab key={tab.id} tabName={tab.name} tabDetail={tab.detail}/>
+      </div>
+    );
+  });
+  
+ return <div className="main-wrapper">{allTabs}</div>;
 }
 
 export default Tabs;

@@ -34,17 +34,9 @@
   inset 4px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* .tab-delete-btn{
-  border: none;
-  background: transparent;
-  display: none;
-  color: #2E8BC0;
-  font-weight: 900;
+.tab:active {
+   border: 3px solid #79bab7;
 }
-
-.tab:hover  ~.tab-delete-btn:hover{
-  display: block !important;
-} */
 
 .tab-info {
   margin-top: 50px;
@@ -54,7 +46,7 @@
 }
 
 .tabs-container {
-  margin-top: 200px;
+  margin-top: 60px;
   display: flex;
   flex-direction: column;
   max-width: 250px;

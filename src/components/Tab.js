@@ -1,36 +1,32 @@
 import '../App.css';
 
-const Tab = ({showTabs, tabsInfo}) => {
+const Tab = ({tabName, tabDetail}) => {
+  // console.log(tab)
   return (
     <>
-      {
-        showTabs? (
-          <div className='main-wrapper'>
-            <div className='tabs-container'>
-              <div className='tab'>
-                 <h1>{tabsInfo[0].tabsName}</h1>
-                 {/* <button className='tab-delete-btn'>X</button> */}
-              </div>
-              <div className='tab-info'>
-                <h1>{tabsInfo[0].tabsInfo}</h1>
-              </div>
-            </div>
-            {/* <div className='tabs-container'>
-              <div className='tab'>
-              </div>
-              <div className='tab-info'>
-                <h1>{tabsInfo[1].tabsInfo}</h1>
-              </div>
-            </div> */}
+      <div className='main-wrapper'>
+        <div className='tabs-container'>
+          <div className='tab'>
+            <h1>{tabName}</h1>
           </div>
-            // <button className="tab">
-            //    <h1> Tab 1</h1>
-            //    {/* <span onClick={() => deleteTab(tabs.id)}>X</span> */}
-            // </button>
-        ):null
-      }
-    </>
+          <div className='tab-info'>
+            <h1>{tabDetail}</h1>
+          </div>
+        </div>
+     </div>
+     {/* <div className='main-wrapper'>
+        <div className='tabs-container'>
+          <div className='tab'>
+            <h1>{tabsInfo[currentTab.name}</h1>
+          </div>
+          <div className='tab-info'>
+            <h1>{tabsInfo[0].detail}</h1>
+          </div>
+        </div>
+     </div> */}
+  </>
   )
 }
 
 export default Tab;
+
