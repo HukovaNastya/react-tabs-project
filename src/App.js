@@ -10,20 +10,26 @@ function App() {
   const[currentTab, setCurrentTab] = useState(0);
 
   const createdTab = () => {
-    const newIndex = currentTab + 1
-    tabsInfo.push(newTabsArray[currentTab])
-    setCurrentTab(newIndex)
+    if(tabsInfo.length === 0){
+      console.log(tabsInfo.length)
+      tabsInfo.push({ id: 0, name: 'Tab 1', detail: 'Today is Monday. Monday is nice day.'})
+      setCurrentTab(0)
+    }else{
+      const newIndex = currentTab + 1
+      tabsInfo.push(newTabsArray[currentTab])
+      setCurrentTab(newIndex)
+    }
   }
-
 
   return (
     <div className="App">
       <h1>React Tabs project</h1>
       <AddTabsBtn onBtnClick={createdTab}/>
-      <Tabs tabsInfo ={tabsInfo} currentTab={currentTab} setCurrentTab={setCurrentTab}/>
-      <div className='tab-info'>
-         <h1 className='tabs-info-content'>{tabsInfo[currentTab].detail}</h1>
-     </div>
+      <Tabs 
+        tabsInfo ={tabsInfo} 
+        currentTab={currentTab} 
+        setCurrentTab={setCurrentTab}
+      />
     </div>
   );
 }

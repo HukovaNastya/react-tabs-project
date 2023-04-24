@@ -13,6 +13,8 @@
 }
 
 .tab {
+  display: flex;
+  /* position: relative; */
   min-height: 40px;
   font-family: 'Poppins', sans-serif;
   cursor: pointer;
@@ -58,13 +60,17 @@
 
 .tabs-container {
   margin-top: 60px;
-  display: flex;
-  flex-direction: column;
   max-width: 250px;
-  align-items: center;
 }
 
 .main-wrapper{
   display: flex;
   justify-content: flex-start;
+}
+
+.delete-tab-btn {
+  position: absolute;
+  /* left: 0; */
+  /* right: 20px;
+  top: 40%; */
 }
