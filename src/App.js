@@ -1,38 +1,57 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import AddTabsBtn from './components/TabsBtn';
 import Tabs from './components/Tabs';
-import tabsInfo from './services/tabsInfo';
-import newTabsArray from './services/newTabArray';
+// import tabsInfo from './services/tabsInfo';
+
+const tabsList = [
+  { id: 0, name: 'Tab 1' },
+  { id: 1, name: 'Tab 2' },
+  { id: 2, name: 'Tab 3' },
+];
 
 function App() {
-  const[currentTab, setCurrentTab] = useState(0);
-  const[content, setContent] = useState(tabsInfo[0])
+  const [tabs, setTabs] = useState(tabsList);
+  const [currentTab, setCurrentTab] = useState(0);
 
   const createdTab = () => {
-    if(tabsInfo.length === 0){
-      tabsInfo.push({ id: 0, name: 'Tab 1', detail: 'Today is Monday. Monday is nice day.'})
-      setCurrentTab(0)
-    }else{
-      const newIndex = currentTab + 1
-      tabsInfo.push(newTabsArray[currentTab])
-      setCurrentTab(newIndex)
-      setContent(tabsInfo[newIndex])
-    }
-  }
+    const tabId = tabs.length;
+    setTabs((prevState) => [...prevState, { id: tabId, name: `Tab ${tabId + 1}` }]);
+    setCurrentTab(tabId);
+  };
+
+  const handleDeleteTab = (tabId) => {
+    //  усли пользователь удаляет табы не по порядку нам нужно подставлять
+    //  айди таба соседнего с лева к удаляемому
+    setCurrentTab(tabs.length - 1);
+    setTabs((prevState) => prevState.filter((tab) => tab.id !== tabId));
+  };
 
   return (
     <div className="App">
       <h1>React Tabs project</h1>
-      <AddTabsBtn onBtnClick={createdTab}/>
-      <Tabs 
-        tabsInfo ={tabsInfo} 
-        currentTab={currentTab} 
+      <AddTabsBtn onBtnClick={createdTab} />
+      <Tabs
+        tabsList={tabs}
+        currentTab={currentTab}
         setCurrentTab={setCurrentTab}
-        setContent={setContent}
+        onTabDelete={handleDeleteTab}
       />
-      <div className='tab-info'>
-        <h1 className='tabs-info-content'>{content.detail}</h1>
+      <div className="tab-info">
+        {currentTab === 0 && <div>Some info for first tab</div>}
+        {currentTab === 1 && <div>Some info for second tab</div>}
+        {currentTab === 2 && (
+        <div>
+          Some info for third tab
+          <button type="button">Some button</button>
+        </div>
+        )}
+        {currentTab >= 3 && (
+        <div>
+          For all other tabs
+          { currentTab + 1 }
+        </div>
+        )}
       </div>
     </div>
   );
