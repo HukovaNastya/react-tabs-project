@@ -21,7 +21,7 @@ function App() {
   };
 
   const handleDeleteTab = (tabId) => {
-    //  усли пользователь удаляет табы не по порядку нам нужно подставлять
+    //  если пользователь удаляет табы не по порядку нам нужно подставлять
     //  айди таба соседнего с лева к удаляемому
     setCurrentTab(tabs.length - 1);
     setTabs((prevState) => prevState.filter((tab) => tab.id !== tabId));
