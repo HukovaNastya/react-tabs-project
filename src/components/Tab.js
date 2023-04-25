@@ -1,6 +1,6 @@
 import '../App.css';
 
-const Tab = ({tabName, id, currentTab, setCurrentTab, deleteTab}) => {
+const Tab = ({tabName, id, currentTab, setCurrentTab, deleteTab, tabDetail}) => {
   console.log(currentTab, id)
   return (
     <>
@@ -9,9 +9,7 @@ const Tab = ({tabName, id, currentTab, setCurrentTab, deleteTab}) => {
           <div className={currentTab === id? "tab-active" : "tab"} onClick={() => setCurrentTab(id)}>
             <h1>{tabName}</h1>
           </div>
-          <div className='delete-tab-btn'>
-              <button onClick={() => deleteTab(id)}>X</button>
-          </div>
+          <button className='delete-tab-btn' onClick={() => deleteTab(id)}>X</button>
         </div>
      </div>
   </>
