@@ -5,14 +5,14 @@
   font-weight: 700;
   font-size: 13px;
   line-height: 19px;
-  /* color: #499e5f; */
   color: #79bab7;
-  /* color: #87c0cc; */
   margin-top: 100px;
   padding-left: 40px;
 }
 
 .tab, .tab-active {
+  background-color: transparent;
+  border: none;
   cursor: pointer;
   color: #2E8BC0;
   font-size: 10px;
@@ -24,6 +24,7 @@
 }
 
 .tab-info {
+  margin-top: 100px;
   font-family: 'Poppins', sans-serif;
   display: flex;
   align-items: flex-start;

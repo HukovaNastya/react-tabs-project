@@ -20,10 +20,21 @@ function App() {
     setCurrentTab(tabId);
   };
 
+  const setActiveTab = (array, id) => {
+    array.forEach((item, index) => {
+      if (id === index || id === 0) {
+        setCurrentTab(index + 1);
+      }
+    });
+    if (id === (array.length - 1)) {
+      setCurrentTab(id - 1);
+    }
+  };
+
   const handleDeleteTab = (tabId) => {
     //  если пользователь удаляет табы не по порядку нам нужно подставлять
     //  айди таба соседнего с лева к удаляемому
-    setCurrentTab(tabs.length - 1);
+    setActiveTab(tabs, tabId);
     setTabs((prevState) => prevState.filter((tab) => tab.id !== tabId));
   };
 
