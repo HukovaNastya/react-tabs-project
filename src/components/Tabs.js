@@ -3,7 +3,7 @@ import Tab from './Tab';
 import '../App.css';
 
 function Tabs({
-  tabsList, currentTab, setCurrentTab, onTabDelete,
+  tabsList, currentTab, setCurrentTab, onTabDelete, onChangeTabName,
 }) {
   const deleteTab = (deleteTabId) => {
     onTabDelete(deleteTabId);
@@ -17,6 +17,7 @@ function Tabs({
         currentTab={currentTab}
         setCurrentTab={setCurrentTab}
         deleteTab={deleteTab}
+        onChangeTabName={onChangeTabName}
       />
     </div>
   ));

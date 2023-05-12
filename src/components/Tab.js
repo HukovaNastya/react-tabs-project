@@ -1,58 +1,75 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import '../App.css';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function Tab({
-  tabName, id, currentTab, setCurrentTab, deleteTab,
+  tabName, id, currentTab, setCurrentTab, deleteTab, onChangeTabName,
 }) {
   const [currentTabName, setTabName] = useState(tabName);
   const [editTabNameMode, setEditTabNameMode] = useState(false);
-  const [currentClassName, setClassName] = useState('tab-input');
-  const [disabled, setDisabled] = useState(true);
+
+  const [isInputDisabled, setInputDisabled] = useState(true);
   const inputRef = useRef(null);
+
   const editTabName = (e) => {
-    console.log(e.target.value);
     setTabName(e.target.value);
-    setClassName('tab-input');
-    if (e.target.value === '') {
-      setClassName('input-error');
-    }
   };
-  const setEditMode = () => {
-    setDisabled(false);
-    inputRef.current.focus();
-    // setClassName('tab-input:focus');
-  };
+
   const choseCurrentTab = () => {
     setCurrentTab(id);
-    setClassName('tab-input-edit');
-    setEditTabNameMode(!editTabNameMode);
   };
+
+  useEffect(() => {
+    if (!isInputDisabled) {
+      inputRef.current.focus();
+    }
+  }, [isInputDisabled, inputRef.current]);
 
   return (
     <div className="main-wrapper">
-      <button type="button" className={currentTab === id ? 'tab-active' : 'tab'} onClick={choseCurrentTab}>
-        <button type="button" className="tab-input-btn">
-          <input 
-            className={currentClassName} 
-            value={currentTabName} 
-            onChange={editTabName} 
-            onBlur={setEditTabNameMode}
-            disabled={disabled}
+      <div
+        role="button"
+        tabIndex={0}
+        type="button"
+        className={currentTab === id ? 'tab-active' : 'tab'}
+        onClick={choseCurrentTab}
+      >
+        <button
+          type="button"
+          className="tab-input-btn"
+          onClick={() => {
+            if (editTabNameMode) return;
+            setEditTabNameMode(!editTabNameMode);
+            setInputDisabled(false);
+          }}
+        >
+          <input
+            type="text"
+            className={editTabNameMode ? 'tab-input-edit' : 'tab-input'}
+            value={currentTabName}
+            onChange={editTabName}
+            onBlur={(e) => {
+              setEditTabNameMode(false);
+              setInputDisabled(true);
+
+              if (e.target.value === tabName) return;
+              onChangeTabName(e.target.value, id);
+            }}
+            disabled={isInputDisabled}
             ref={inputRef}
           />
         </button>
         {
-          currentClassName === 'tab-input'
-            ? 
-             <button type="button" className="delete-tab-btn" onClick={() => deleteTab(id)}>X</button>
-            : 
-             <button type="button" className="delete-tab-btn" onClick={() => editTabName}> 
-               <FontAwesomeIcon icon={faPencil} onClick={setEditMode}/>
-             </button>
+          !editTabNameMode
+            ? <button type="button" className="delete-tab-btn" onClick={() => deleteTab(id)}>X</button>
+            : (
+              <button type="button" className="delete-tab-btn">
+                <FontAwesomeIcon icon={faPencil} />
+              </button>
+            )
         }
-      </button>
+      </div>
     </div>
   );
 }

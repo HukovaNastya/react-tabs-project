@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import AddTabsBtn from './components/TabsBtn';
 import Tabs from './components/Tabs';
-import TabInfo from './components/TabInfo'
-// import tabsInfo from './services/tabsInfo';
+import TabInfo from './components/TabInfo';
 
 const tabsList = [
   { id: 0, name: 'Tab 1' },
@@ -33,10 +32,14 @@ function App() {
   };
 
   const handleDeleteTab = (tabId) => {
-    //  если пользователь удаляет табы не по порядку нам нужно подставлять
-    //  айди таба соседнего с лева к удаляемому
     setActiveTab(tabs, tabId);
     setTabs((prevState) => prevState.filter((tab) => tab.id !== tabId));
+  };
+
+  const handleChangeTabName = (value, id) => {
+    setTabs((prevState) => prevState.map(
+      (tab) => (tab.id === id ? { id: tab.id, name: value } : tab),
+    ));
   };
 
   return (
@@ -48,8 +51,9 @@ function App() {
         currentTab={currentTab}
         setCurrentTab={setCurrentTab}
         onTabDelete={handleDeleteTab}
+        onChangeTabName={handleChangeTabName}
       />
-      <TabInfo currentTab={currentTab}/>
+      <TabInfo currentTab={currentTab} />
     </div>
   );
 }
