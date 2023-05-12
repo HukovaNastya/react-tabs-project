@@ -68,7 +68,7 @@
   text-align: center;
 }
 
-.tab-input {
+input, .tab-input {
   border: transparent;
   background-color: transparent;
   max-width: 45px;
@@ -78,9 +78,31 @@
   overflow: hidden; 
 }
 
-.tab-input:focus {
+input:focus, .tab-input:focus {
   color: #79bab7;
   outline: none;
-  border: dashed;
+  border: 2px dashed #79bab7 !important;
   max-width: 45px;
+}
+
+.input-error:focus {
+  outline: none;
+  max-width: 45px;
+  border: 2px dashed red !important;
+}
+
+.tab-input-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.tab-input-edit {
+  border: transparent;
+  background-color: transparent;
+  max-width: 45px;
+  color: #2E8BC0;
+  font-size: 17px;
+  text-overflow: ellipsis;
+  overflow: hidden; 
 }
